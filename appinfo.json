@@ -10,6 +10,13 @@
     "watchface": true
   },
   "resources": {
-    "media": []
+    "media": [
+      {
+	"file": "images/menu_icon.png",
+	"menuIcon": true,
+	"name": "IMAGE_MENU_ICON",
+	"type": "png"
+      }
+    ]
   }
 }
