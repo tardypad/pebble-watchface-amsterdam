@@ -5,7 +5,7 @@
 #define TIME_FONT_PADDING 10
 
 static Window *s_main_window;
-static BitmapLayer *s_bitmap_layer;
+static BitmapLayer *s_stripe_bitmap_layer;
 static Layer *s_time_layer;
 static char s_time_text[] = "00:00";
 
@@ -33,9 +33,9 @@ static void main_window_load(Window *window) {
     window_bounds.size.w,
     stripe_height
   );
-  s_bitmap_layer = bitmap_layer_create(stripe_bounds);
-  bitmap_layer_set_background_color(s_bitmap_layer, GColorBlack);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_bitmap_layer));
+  s_stripe_bitmap_layer = bitmap_layer_create(stripe_bounds);
+  bitmap_layer_set_background_color(s_stripe_bitmap_layer, GColorBlack);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_stripe_bitmap_layer));
 
   int16_t time_height = TIME_FONT_HEIGHT;
   GRect time_bounds = GRect(
@@ -45,7 +45,7 @@ static void main_window_load(Window *window) {
     time_height
   );
   s_time_layer = layer_create(time_bounds);
-  layer_add_child(bitmap_layer_get_layer(s_bitmap_layer), s_time_layer);
+  layer_add_child(bitmap_layer_get_layer(s_stripe_bitmap_layer), s_time_layer);
   layer_set_update_proc(s_time_layer, update_time);
 
   time_t now = time(NULL);
@@ -56,7 +56,7 @@ static void main_window_load(Window *window) {
 
 static void main_window_unload(Window *window) {
   tick_timer_service_unsubscribe();
-  bitmap_layer_destroy(s_bitmap_layer);
+  bitmap_layer_destroy(s_stripe_bitmap_layer);
   layer_destroy(s_time_layer);
 }
 
