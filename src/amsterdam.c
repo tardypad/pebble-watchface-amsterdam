@@ -27,19 +27,23 @@ static void main_window_load(Window *window) {
   GRect window_bounds = layer_get_bounds(window_layer);
 
   int16_t stripe_height = window_bounds.size.h / 3;
-  GRect stripe_bounds = (GRect) {
-    .origin = (GPoint) { .x = window_bounds.origin.x, .y = window_bounds.origin.y + stripe_height },
-    .size   = (GSize) { .w = window_bounds.size.w, .h = stripe_height },
-  };
+  GRect stripe_bounds = GRect(
+    window_bounds.origin.x,
+    window_bounds.origin.y + stripe_height,
+    window_bounds.size.w,
+    stripe_height
+  );
   s_bitmap_layer = bitmap_layer_create(stripe_bounds);
   bitmap_layer_set_background_color(s_bitmap_layer, GColorBlack);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_bitmap_layer));
 
   int16_t time_height = TIME_FONT_HEIGHT;
-  GRect time_bounds = (GRect) {
-    .origin = (GPoint) { .x = 0, .y = (stripe_height - time_height) / 2},
-    .size   = (GSize) { .w = stripe_bounds.size.w, .h = time_height },
-  };
+  GRect time_bounds = GRect(
+    0,
+    (stripe_height - time_height) / 2,
+    stripe_bounds.size.w,
+    time_height
+  );
   s_time_layer = layer_create(time_bounds);
   layer_add_child(bitmap_layer_get_layer(s_bitmap_layer), s_time_layer);
   layer_set_update_proc(s_time_layer, update_time);
