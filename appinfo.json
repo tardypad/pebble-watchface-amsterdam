@@ -16,6 +16,11 @@
 	"menuIcon": true,
 	"name": "IMAGE_MENU_ICON",
 	"type": "png"
+      },
+      {
+        "file": "animations/slide.apng",
+        "name": "ANIMATION_SLIDE",
+        "type": "raw"
       }
     ]
   }
