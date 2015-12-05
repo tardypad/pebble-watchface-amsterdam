@@ -87,8 +87,9 @@ static void main_window_load(Window *window) {
     stripe_height
   );
   s_stripe_bitmap_layer = bitmap_layer_create(stripe_frame);
+  Layer* stripe_layer = bitmap_layer_get_layer(s_stripe_bitmap_layer);
   bitmap_layer_set_background_color(s_stripe_bitmap_layer, GColorBlack);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_stripe_bitmap_layer));
+  layer_add_child(window_layer, stripe_layer);
 
   int16_t time_height = TIME_FONT_HEIGHT;
   GRect time_frame = GRect(
@@ -98,7 +99,7 @@ static void main_window_load(Window *window) {
     time_height
   );
   s_time_layer = layer_create(time_frame);
-  layer_add_child(bitmap_layer_get_layer(s_stripe_bitmap_layer), s_time_layer);
+  layer_add_child(stripe_layer, s_time_layer);
   layer_set_update_proc(s_time_layer, update_time);
 
   GRect animation_frame = GRect(
@@ -108,8 +109,9 @@ static void main_window_load(Window *window) {
     stripe_frame.size.h
   );
   s_animation_bitmap_layer = bitmap_layer_create(animation_frame);
-  layer_add_child(bitmap_layer_get_layer(s_stripe_bitmap_layer), bitmap_layer_get_layer(s_animation_bitmap_layer));
-  layer_set_update_proc(bitmap_layer_get_layer(s_animation_bitmap_layer), update_animation);
+  Layer* animation_layer = bitmap_layer_get_layer(s_animation_bitmap_layer);
+  layer_add_child(stripe_layer, animation_layer);
+  layer_set_update_proc(animation_layer, update_animation);
 
   time_t now = time(NULL);
   struct tm *current_time = localtime(&now);
