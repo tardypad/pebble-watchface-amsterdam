@@ -1,5 +1,7 @@
 #include <pebble.h>
 
+//#define DEBUG_SLOW_ANIMATIONS
+
 #define TIME_FONT_KEY FONT_KEY_BITHAM_42_MEDIUM_NUMBERS
 #define TIME_FONT_HEIGHT 32
 #define TIME_FONT_PADDING 10
@@ -20,7 +22,11 @@ static void animation_sequence_timer_handler(void *context) {
   if(gbitmap_sequence_update_bitmap_next_frame(s_animation_sequence, s_animation_bitmap, &next_delay)) {
     bitmap_layer_set_bitmap(s_animation_bitmap_layer, s_animation_bitmap);
     layer_mark_dirty(bitmap_layer_get_layer(s_animation_bitmap_layer));
+#ifdef DEBUG_SLOW_ANIMATIONS
+    app_timer_register(1000, animation_sequence_timer_handler, NULL);
+#else
     app_timer_register(next_delay, animation_sequence_timer_handler, NULL);
+#endif
   }
 }
 
