@@ -6,18 +6,25 @@
 #define TIME_FONT_HEIGHT 32
 #define TIME_FONT_PADDING 10
 
+#define ANIMATION_SLIDE_FULL_FRAME_INDEX 4
+
 static Window *s_main_window;
 static BitmapLayer *s_stripe_bitmap_layer;
 static BitmapLayer *s_animation_bitmap_layer;
 static Layer *s_time_layer;
 static GBitmap *s_animation_bitmap = NULL;
 static GBitmapSequence *s_animation_sequence = NULL;
-static char s_time_text[] = "00:00";
+static char s_time_text[] = "     ";
+static char s_next_time_text[] = "     ";
 
 static void load_animation_sequence();
 
 static void animation_sequence_timer_handler(void *context) {
   uint32_t next_delay;
+
+  if (gbitmap_sequence_get_current_frame_idx(s_animation_sequence) == ANIMATION_SLIDE_FULL_FRAME_INDEX) {
+    strncpy(s_time_text, s_next_time_text, sizeof(s_next_time_text));
+  }
 
   if(gbitmap_sequence_update_bitmap_next_frame(s_animation_sequence, s_animation_bitmap, &next_delay)) {
     bitmap_layer_set_bitmap(s_animation_bitmap_layer, s_animation_bitmap);
@@ -53,6 +60,9 @@ static void update_animation(Layer *layer, GContext *ctx) {
 }
 
 static void update_time(Layer *layer, GContext *ctx) {
+  if(strcmp(s_time_text, "     ") == 0)
+    return;
+
   GRect bounds = layer_get_bounds(layer);
   bounds.origin.y = -TIME_FONT_PADDING;
   GFont font = fonts_get_system_font(TIME_FONT_KEY);
@@ -61,7 +71,7 @@ static void update_time(Layer *layer, GContext *ctx) {
 }
 
 static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
-  strftime(s_time_text, sizeof(s_time_text), "%H:%M", tick_time);
+  strftime(s_next_time_text, sizeof(s_next_time_text), "%H:%M", tick_time);
   load_animation_sequence();
 }
 
