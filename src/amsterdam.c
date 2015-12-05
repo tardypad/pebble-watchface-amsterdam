@@ -41,17 +41,17 @@ static void load_animation_sequence() {
 }
 
 static void update_animation(Layer *layer, GContext *ctx) {
-  GRect frame = layer_get_frame(layer);
+  GRect bounds = layer_get_bounds(layer);
   graphics_context_set_compositing_mode(ctx, GCompOpSet);
-  graphics_draw_bitmap_in_rect(ctx, s_animation_bitmap, frame);
+  graphics_draw_bitmap_in_rect(ctx, s_animation_bitmap, bounds);
 }
 
 static void update_time(Layer *layer, GContext *ctx) {
-  GRect frame = layer_get_frame(layer);
-  frame.origin.y = -TIME_FONT_PADDING;
+  GRect bounds = layer_get_bounds(layer);
+  bounds.origin.y = -TIME_FONT_PADDING;
   GFont font = fonts_get_system_font(TIME_FONT_KEY);
   graphics_context_set_text_color(ctx, GColorWhite);
-  graphics_draw_text(ctx, s_time_text, font, frame, GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
+  graphics_draw_text(ctx, s_time_text, font, bounds, GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
 }
 
 static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
@@ -64,34 +64,34 @@ static void main_window_load(Window *window) {
   GRect window_bounds = layer_get_bounds(window_layer);
 
   int16_t stripe_height = window_bounds.size.h / 3;
-  GRect stripe_bounds = GRect(
+  GRect stripe_frame = GRect(
     window_bounds.origin.x,
     window_bounds.origin.y + stripe_height,
     window_bounds.size.w,
     stripe_height
   );
-  s_stripe_bitmap_layer = bitmap_layer_create(stripe_bounds);
+  s_stripe_bitmap_layer = bitmap_layer_create(stripe_frame);
   bitmap_layer_set_background_color(s_stripe_bitmap_layer, GColorBlack);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_stripe_bitmap_layer));
 
   int16_t time_height = TIME_FONT_HEIGHT;
-  GRect time_bounds = GRect(
+  GRect time_frame = GRect(
     0,
     (stripe_height - time_height) / 2,
-    stripe_bounds.size.w,
+    stripe_frame.size.w,
     time_height
   );
-  s_time_layer = layer_create(time_bounds);
+  s_time_layer = layer_create(time_frame);
   layer_add_child(bitmap_layer_get_layer(s_stripe_bitmap_layer), s_time_layer);
   layer_set_update_proc(s_time_layer, update_time);
 
-  GRect animation_bounds = GRect(
+  GRect animation_frame = GRect(
     0,
     0,
-    stripe_bounds.size.w,
-    stripe_bounds.size.h
+    stripe_frame.size.w,
+    stripe_frame.size.h
   );
-  s_animation_bitmap_layer = bitmap_layer_create(animation_bounds);
+  s_animation_bitmap_layer = bitmap_layer_create(animation_frame);
   layer_add_child(bitmap_layer_get_layer(s_stripe_bitmap_layer), bitmap_layer_get_layer(s_animation_bitmap_layer));
   layer_set_update_proc(bitmap_layer_get_layer(s_animation_bitmap_layer), update_animation);
 
