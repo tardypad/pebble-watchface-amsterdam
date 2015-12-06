@@ -21,6 +21,11 @@
         "file": "animations/slide/xxx.apng",
         "name": "ANIMATION_SLIDE",
         "type": "raw"
+      },
+      {
+        "file": "animations/roll/xxx.apng",
+        "name": "ANIMATION_ROLL",
+        "type": "raw"
       }
     ]
   }

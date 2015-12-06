@@ -7,6 +7,7 @@
 #define TIME_FONT_PADDING 10
 
 #define ANIMATION_SLIDE_FULL_FRAME_INDEX 4
+#define ANIMATION_ROLL_FULL_FRAME_INDEX 5
 
 static Window *s_main_window;
 static BitmapLayer *s_stripe_bitmap_layer;
@@ -17,13 +18,14 @@ static GBitmapSequence *s_animation_sequence = NULL;
 static char s_time_text[] = "     ";
 static char s_next_time_text[] = "     ";
 static bool s_animation_running = false;
+static int s_animation_full_frame_index = 0;
 
 static void load_animation_sequence();
 
 static void animation_sequence_timer_handler(void *context) {
   uint32_t next_delay;
 
-  if (gbitmap_sequence_get_current_frame_idx(s_animation_sequence) == ANIMATION_SLIDE_FULL_FRAME_INDEX) {
+  if (gbitmap_sequence_get_current_frame_idx(s_animation_sequence) == s_animation_full_frame_index) {
     strncpy(s_time_text, s_next_time_text, sizeof(s_next_time_text));
   }
 
@@ -41,6 +43,18 @@ static void animation_sequence_timer_handler(void *context) {
   }
 }
 
+static uint32_t select_animation()
+{
+  switch (rand() % 2) {
+    case 0:
+      s_animation_full_frame_index = ANIMATION_ROLL_FULL_FRAME_INDEX;
+      return RESOURCE_ID_ANIMATION_ROLL;
+    default:
+      s_animation_full_frame_index = ANIMATION_SLIDE_FULL_FRAME_INDEX;
+      return RESOURCE_ID_ANIMATION_SLIDE;
+  }
+}
+
 static void load_animation_sequence() {
   if (s_animation_running)
     return;
@@ -54,7 +68,8 @@ static void load_animation_sequence() {
     s_animation_bitmap = NULL;
   }
 
-  s_animation_sequence = gbitmap_sequence_create_with_resource(RESOURCE_ID_ANIMATION_SLIDE);
+  uint32_t animation_id = select_animation();
+  s_animation_sequence = gbitmap_sequence_create_with_resource(animation_id);
   s_animation_bitmap = gbitmap_create_blank(gbitmap_sequence_get_bitmap_size(s_animation_sequence), GBitmapFormat8Bit);
 
   app_timer_register(1, animation_sequence_timer_handler, NULL);
@@ -136,6 +151,8 @@ static void main_window_unload(Window *window) {
 }
 
 static void init() {
+  srand(time(NULL));
+
   s_main_window = window_create();
   window_set_background_color(s_main_window, GColorRed);
   window_set_window_handlers(s_main_window, (WindowHandlers) {
