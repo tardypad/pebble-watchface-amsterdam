@@ -18,7 +18,7 @@
 	"type": "png"
       },
       {
-        "file": "animations/slide.apng",
+        "file": "animations/slide/xxx.apng",
         "name": "ANIMATION_SLIDE",
         "type": "raw"
       }
