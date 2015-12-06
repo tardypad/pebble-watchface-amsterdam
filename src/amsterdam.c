@@ -27,7 +27,7 @@ static void animation_sequence_timer_handler(void *context) {
     strncpy(s_time_text, s_next_time_text, sizeof(s_next_time_text));
   }
 
-  if(gbitmap_sequence_update_bitmap_next_frame(s_animation_sequence, s_animation_bitmap, &next_delay)) {
+  if (gbitmap_sequence_update_bitmap_next_frame(s_animation_sequence, s_animation_bitmap, &next_delay)) {
     s_animation_running = true;
     bitmap_layer_set_bitmap(s_animation_bitmap_layer, s_animation_bitmap);
     layer_mark_dirty(bitmap_layer_get_layer(s_animation_bitmap_layer));
@@ -45,11 +45,11 @@ static void load_animation_sequence() {
   if (s_animation_running)
     return;
 
-  if(s_animation_sequence) {
+  if (s_animation_sequence) {
     gbitmap_sequence_destroy(s_animation_sequence);
     s_animation_sequence = NULL;
   }
-  if(s_animation_bitmap) {
+  if (s_animation_bitmap) {
     gbitmap_destroy(s_animation_bitmap);
     s_animation_bitmap = NULL;
   }
@@ -67,7 +67,7 @@ static void update_animation(Layer *layer, GContext *ctx) {
 }
 
 static void update_time(Layer *layer, GContext *ctx) {
-  if(strcmp(s_time_text, "     ") == 0)
+  if (strcmp(s_time_text, "     ") == 0)
     return;
 
   GRect bounds = layer_get_bounds(layer);
