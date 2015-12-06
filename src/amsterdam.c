@@ -16,6 +16,7 @@ static GBitmap *s_animation_bitmap = NULL;
 static GBitmapSequence *s_animation_sequence = NULL;
 static char s_time_text[] = "     ";
 static char s_next_time_text[] = "     ";
+static bool s_animation_running = false;
 
 static void load_animation_sequence();
 
@@ -27,6 +28,7 @@ static void animation_sequence_timer_handler(void *context) {
   }
 
   if(gbitmap_sequence_update_bitmap_next_frame(s_animation_sequence, s_animation_bitmap, &next_delay)) {
+    s_animation_running = true;
     bitmap_layer_set_bitmap(s_animation_bitmap_layer, s_animation_bitmap);
     layer_mark_dirty(bitmap_layer_get_layer(s_animation_bitmap_layer));
 #ifdef DEBUG_SLOW_ANIMATIONS
@@ -34,10 +36,15 @@ static void animation_sequence_timer_handler(void *context) {
 #else
     app_timer_register(next_delay, animation_sequence_timer_handler, NULL);
 #endif
+  } else {
+    s_animation_running = false;
   }
 }
 
 static void load_animation_sequence() {
+  if (s_animation_running)
+    return;
+
   if(s_animation_sequence) {
     gbitmap_sequence_destroy(s_animation_sequence);
     s_animation_sequence = NULL;
