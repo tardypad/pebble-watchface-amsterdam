@@ -26,6 +26,11 @@
         "file": "animations/roll/xxx.apng",
         "name": "ANIMATION_ROLL",
         "type": "raw"
+      },
+      {
+        "file": "animations/scale/xxx.apng",
+        "name": "ANIMATION_SCALE",
+        "type": "raw"
       }
     ]
   }

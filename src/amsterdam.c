@@ -8,6 +8,7 @@
 
 #define ANIMATION_SLIDE_FULL_FRAME_INDEX 4
 #define ANIMATION_ROLL_FULL_FRAME_INDEX 5
+#define ANIMATION_SCALE_FULL_FRAME_INDEX 4
 
 static Window *s_main_window;
 static BitmapLayer *s_stripe_bitmap_layer;
@@ -45,10 +46,13 @@ static void animation_sequence_timer_handler(void *context) {
 
 static uint32_t select_animation()
 {
-  switch (rand() % 2) {
+  switch (rand() % 3) {
     case 0:
       s_animation_full_frame_index = ANIMATION_ROLL_FULL_FRAME_INDEX;
       return RESOURCE_ID_ANIMATION_ROLL;
+    case 1:
+      s_animation_full_frame_index = ANIMATION_SCALE_FULL_FRAME_INDEX;
+      return RESOURCE_ID_ANIMATION_SCALE;
     default:
       s_animation_full_frame_index = ANIMATION_SLIDE_FULL_FRAME_INDEX;
       return RESOURCE_ID_ANIMATION_SLIDE;
