@@ -1,7 +1,7 @@
 import os.path
-
+import waflib.Logs
 from glob import glob
-from sh import Command, apngasm
+from sh import Command
 from waflib.Build import POST_LAZY
 
 top = '.'
@@ -43,9 +43,16 @@ def build(ctx):
     ctx.pbl_bundle(binaries=binaries, js=ctx.path.ant_glob('src/js/**/*.js'))
 
 def generate_animations(ctx):
+    try:
+      rsvgconvert = Command('rsvg-convert')
+      apngasm = Command('apngasm')
+    except:
+      waflib.Logs.warn('Missing required sh commands: rsvg-convert, apngasm')
+      waflib.Logs.warn("Can't rebuild animations, will use current ones if available")
+      return
+
     def generate_animation(task):
         animation_dir = task.env.ANIMATION_DIR
-        rsvgconvert = Command("rsvg-convert")
         for svg_frame in glob(animation_dir + '/frames/*.svg'):
             rsvgconvert(svg_frame, o=svg_frame.replace('.svg', '.png'))
         apngasm('--force', o=animation_dir + '/xxx.apng', f=animation_dir + '/animation.xml')
