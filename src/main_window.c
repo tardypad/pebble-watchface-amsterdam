@@ -95,7 +95,8 @@ static void update_time(Layer *layer, GContext *ctx) {
 }
 
 static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
-  strftime(s_next_time_text, sizeof(s_next_time_text), "%H:%M", tick_time);
+  char* time_format = clock_is_24h_style() ? "%H:%M" : "%I:%M";
+  strftime(s_next_time_text, sizeof(s_next_time_text), time_format, tick_time);
   load_animation_sequence();
 }
 
