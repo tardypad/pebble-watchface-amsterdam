@@ -7,17 +7,8 @@
 
 #include <pebble.h>
 
-//#define DEBUG_SLOW_ANIMATIONS
+#include "config.h"
 
-#define TIME_FONT_KEY FONT_KEY_BITHAM_42_MEDIUM_NUMBERS
-#define TIME_FONT_HEIGHT 32
-#define TIME_FONT_PADDING 10
-
-#define ANIMATION_SLIDE_FULL_FRAME_INDEX 4
-#define ANIMATION_ROLL_FULL_FRAME_INDEX 5
-#define ANIMATION_SCALE_FULL_FRAME_INDEX 4
-
-static Window *s_main_window;
 static BitmapLayer *s_stripe_bitmap_layer;
 static BitmapLayer *s_animation_bitmap_layer;
 static Layer *s_time_layer;
@@ -108,7 +99,9 @@ static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
   load_animation_sequence();
 }
 
-static void main_window_load(Window *window) {
+void main_window_load(Window *window) {
+  window_set_background_color(window, GColorRed);
+
   Layer *window_layer = window_get_root_layer(window);
   GRect window_bounds = layer_get_bounds(window_layer);
 
@@ -152,33 +145,11 @@ static void main_window_load(Window *window) {
   tick_timer_service_subscribe(MINUTE_UNIT, handle_tick);
 }
 
-static void main_window_unload(Window *window) {
+void main_window_unload(Window *window) {
   tick_timer_service_unsubscribe();
   bitmap_layer_destroy(s_stripe_bitmap_layer);
   bitmap_layer_destroy(s_animation_bitmap_layer);
   gbitmap_sequence_destroy(s_animation_sequence);
   gbitmap_destroy(s_animation_bitmap);
   layer_destroy(s_time_layer);
-}
-
-static void init() {
-  srand(time(NULL));
-
-  s_main_window = window_create();
-  window_set_background_color(s_main_window, GColorRed);
-  window_set_window_handlers(s_main_window, (WindowHandlers) {
-    .load = main_window_load,
-    .unload = main_window_unload,
-  });
-  window_stack_push(s_main_window, true);
-}
-
-static void deinit() {
-  window_destroy(s_main_window);
-}
-
-int main(void) {
-  init();
-  app_event_loop();
-  deinit();
 }
