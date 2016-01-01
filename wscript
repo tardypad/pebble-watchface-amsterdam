@@ -56,10 +56,10 @@ def generate_animations(ctx):
         platform = task.env.PLATFORM
         animation_dir_platform = animation_dir + '/' + platform
         apng_result_file = animation_dir + '/xxx~' + platform + '.apng'
-        for svg_frame in glob(animation_dir_platform + '/frames/*.svg'):
+        for svg_frame in glob(animation_dir_platform + '/*.svg'):
             rsvgconvert(svg_frame, o=svg_frame.replace('.svg', '.png'))
         apngasm('--force', o=apng_result_file, f=animation_dir_platform + '/animation.xml')
-        for png_frame in glob(animation_dir_platform + '/frames/*.png'):
+        for png_frame in glob(animation_dir_platform + '/*.png'):
             os.remove(png_frame)
 
     for platform in ctx.env.TARGET_PLATFORMS:
