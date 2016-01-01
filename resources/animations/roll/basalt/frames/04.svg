@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:cc="http://creativecommons.org/ns#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:svg="http://www.w3.org/2000/svg"
+ xmlns="http://www.w3.org/2000/svg"
+ version="1.1"
+ id="svg2"
+ height="56"
+ width="144">
+<defs
+ id="defs4" />
+<metadata
+ id="metadata7">
+<rdf:RDF>
+<cc:Work
+ rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type
+ rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+<dc:title></dc:title>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<path
+ id="rect3339"
+ d="M 0 0 L 0 56 L 116 56 L 116 0 L 0 0 z "
+ style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;marker:none;enable-background:accumulate" />
+<path
+ id="rect3337"
+ d="M 0 6.7070312 L 0 49.294922 L 3.7792969 49.625 L 5.1347656 34.128906 L 20.632812 35.484375 L 21.619141 24.214844 L 6.1210938 22.857422 L 7.4765625 7.359375 L 0 6.7070312 z "
+ style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;marker:none;enable-background:accumulate" />
+<path
+ style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+ d="M 36.516121,48.63981 47.786116,49.625812 49.142001,34.128003 64.639819,35.483877 65.62581,24.213881 50.128006,22.857995 51.483885,7.3601903 40.21389,6.3741878 38.857997,21.872004 23.360187,20.516123 22.374196,31.786119 37.871998,33.142006 36.516121,48.63981 Z"
+ id="path3342" />
+<path
+ style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+ d="m 80.522648,48.63981 11.269998,0.986 1.355886,-15.497811 15.497818,1.355873 0.98599,-11.269991 -15.497807,-1.355886 1.355879,-15.4978047 -11.26999,-0.986007 -1.355894,15.4978177 -15.497811,-1.35588 -0.985994,11.269998 15.497811,1.35588 -1.355886,15.497811 z"
+ id="path6986" />
+</svg>

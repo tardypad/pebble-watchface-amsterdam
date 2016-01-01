@@ -53,15 +53,21 @@ def generate_animations(ctx):
 
     def generate_animation(task):
         animation_dir = task.env.ANIMATION_DIR
-        for svg_frame in glob(animation_dir + '/frames/*.svg'):
+        platform = task.env.PLATFORM
+        animation_dir_platform = animation_dir + '/' + platform
+        apng_result_file = animation_dir + '/xxx~' + platform + '.apng'
+        for svg_frame in glob(animation_dir_platform + '/frames/*.svg'):
             rsvgconvert(svg_frame, o=svg_frame.replace('.svg', '.png'))
-        apngasm('--force', o=animation_dir + '/xxx.apng', f=animation_dir + '/animation.xml')
-        for png_frame in glob(animation_dir + '/frames/*.png'):
+        apngasm('--force', o=apng_result_file, f=animation_dir_platform + '/animation.xml')
+        for png_frame in glob(animation_dir_platform + '/frames/*.png'):
             os.remove(png_frame)
 
-    for animation_dir in ctx.path.ant_glob('resources/animations/*', dir=True, src=False):
-        animation_sources = ctx.path.ant_glob([animation_dir.srcpath()+'/**/*.svg', animation_dir.srcpath()+'/**/*.xml'])
-        task_env = ctx.env.derive()
-        task_env.ANIMATION_DIR = animation_dir.abspath()
-        task_name = 'generate ' + os.path.basename(animation_dir.abspath()) + ' animation'
-        ctx(rule=generate_animation, source=animation_sources, env=task_env, name=task_name, color='YELLOW')
+    for platform in ctx.env.TARGET_PLATFORMS:
+      for animation_dir in ctx.path.ant_glob('resources/animations/*', dir=True, src=False):
+          animation_dir_platform = animation_dir.srcpath() + '/' + platform
+          animation_sources = ctx.path.ant_glob([animation_dir_platform + '/**/*.svg', animation_dir_platform + '/**/*.xml'])
+          task_env = ctx.env.derive()
+          task_env.ANIMATION_DIR = animation_dir.abspath()
+          task_env.PLATFORM = platform
+          task_name = 'generate ' + os.path.basename(animation_dir.abspath()) + ' animation for ' + platform
+          ctx(rule=generate_animation, source=animation_sources, env=task_env, name=task_name, color='YELLOW')

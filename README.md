@@ -3,7 +3,7 @@ Amsterdam Pebble Watchface
 
 [Pebble](https://www.pebble.com/) watchface displaying the Amsterdam flag
 
-Designed for Chalk only (for now?)
+Designed for Chalk and Basalt platforms
 
 
 Features

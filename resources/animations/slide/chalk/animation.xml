@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animation name="slide" loops="1" skip_first="false" default_delay="1/30">
+  <frame src="frames/01.png" />
+  <frame src="frames/02.png" />
+  <frame src="frames/03.png" />
+  <frame src="frames/04.png" />
+  <frame src="frames/05.png" delay="30/30" />
+  <frame src="frames/04.png" />
+  <frame src="frames/03.png" />
+  <frame src="frames/02.png" />
+  <frame src="frames/01.png" />
+</animation>
