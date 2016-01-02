@@ -33,7 +33,7 @@ static void animation_sequence_timer_handler(void *context) {
     bitmap_layer_set_bitmap(s_animation_bitmap_layer, s_animation_bitmap);
     layer_mark_dirty(bitmap_layer_get_layer(s_animation_bitmap_layer));
 #ifdef DEBUG_SLOW_ANIMATIONS
-    app_timer_register(1000, animation_sequence_timer_handler, NULL);
+    app_timer_register(DEBUG_SLOW_ANIMATIONS_DELAY, animation_sequence_timer_handler, NULL);
 #else
     app_timer_register(next_delay, animation_sequence_timer_handler, NULL);
 #endif
