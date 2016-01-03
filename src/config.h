@@ -14,6 +14,14 @@
 #define TIME_FONT_HEIGHT 32
 #define TIME_FONT_PADDING 10
 
-#define ANIMATION_SLIDE_FULL_FRAME_INDEX 4
-#define ANIMATION_ROLL_FULL_FRAME_INDEX 5
-#define ANIMATION_SCALE_FULL_FRAME_INDEX 4
+
+typedef struct {
+  uint32_t resource_id;
+  uint8_t full_frame_index;
+} XXXAnimation;
+
+XXXAnimation xxx_animations[3] = {
+  { RESOURCE_ID_ANIMATION_SLIDE, 4 },
+  { RESOURCE_ID_ANIMATION_SCALE, 5 },
+  { RESOURCE_ID_ANIMATION_ROLL, 4 }
+};
