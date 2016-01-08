@@ -5,6 +5,8 @@ Amsterdam Pebble Watchface
 
 Designed for Chalk and Basalt platforms
 
+![Chalk roll animation](/assets/chalk/animation_roll.gif?raw=true "Roll animation")
+![Basalt slide animation](/assets/basalt/animation_slide.gif?raw=true "Slide animation")
 
 Features
 --------
