@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<animation name="scale" loops="1" skip_first="false" default_delay="1/30">
+<animation name="scale" loops="1" skip_first="false" default_delay="2/30">
   <frame src="01.png" />
   <frame src="02.png" />
   <frame src="03.png" />
