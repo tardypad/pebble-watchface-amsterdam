@@ -18,6 +18,7 @@ static GBitmapSequence *s_animation_sequence = NULL;
 static char s_time_text[] = "     ";
 static char s_next_time_text[] = "     ";
 static char s_date_text[] = "      ";
+static char s_next_date_text[] = "      ";
 static bool s_animation_running = false;
 static XXXAnimation* current_animation = NULL;
 
@@ -28,6 +29,7 @@ static void animation_sequence_timer_handler(void *context) {
 
   if (gbitmap_sequence_get_current_frame_idx(s_animation_sequence) == current_animation->full_frame_index) {
     strncpy(s_time_text, s_next_time_text, sizeof(s_next_time_text));
+    strncpy(s_date_text, s_next_date_text, sizeof(s_next_date_text));
   }
 
   if (gbitmap_sequence_update_bitmap_next_frame(s_animation_sequence, s_animation_bitmap, &next_delay)) {
@@ -93,7 +95,7 @@ static void update_time(Layer *layer, GContext *ctx) {
 static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
   char* time_format = clock_is_24h_style() ? "%H:%M" : "%I:%M";
   strftime(s_next_time_text, sizeof(s_next_time_text), time_format, tick_time);
-  strftime(s_date_text, sizeof(s_date_text), "%a %d", tick_time);
+  strftime(s_next_date_text, sizeof(s_next_date_text), "%a %d", tick_time);
   load_animation_sequence();
 }
 
