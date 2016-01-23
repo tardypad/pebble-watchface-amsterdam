@@ -93,12 +93,8 @@ static void update_time(Layer *layer, GContext *ctx) {
 static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
   char* time_format = clock_is_24h_style() ? "%H:%M" : "%I:%M";
   strftime(s_next_time_text, sizeof(s_next_time_text), time_format, tick_time);
-
+  strftime(s_date_text, sizeof(s_date_text), "%a %d", tick_time);
   load_animation_sequence();
-
-   if ((tick_time->tm_hour == 0 && tick_time->tm_min <= 1) || strcmp(s_date_text, "      " ) == 0) {
-     strftime(s_date_text, sizeof(s_date_text), "%a %d", tick_time);
-   }
 }
 
 void main_window_load(Window *window) {
