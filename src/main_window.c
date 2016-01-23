@@ -12,10 +12,12 @@
 static BitmapLayer *s_stripe_bitmap_layer;
 static BitmapLayer *s_animation_bitmap_layer;
 static Layer *s_time_layer;
+static TextLayer *s_date_text_layer;
 static GBitmap *s_animation_bitmap = NULL;
 static GBitmapSequence *s_animation_sequence = NULL;
 static char s_time_text[] = "     ";
 static char s_next_time_text[] = "     ";
+static char s_date_text[] = "      ";
 static bool s_animation_running = false;
 static XXXAnimation* current_animation = NULL;
 
@@ -91,7 +93,12 @@ static void update_time(Layer *layer, GContext *ctx) {
 static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
   char* time_format = clock_is_24h_style() ? "%H:%M" : "%I:%M";
   strftime(s_next_time_text, sizeof(s_next_time_text), time_format, tick_time);
+
   load_animation_sequence();
+
+   if ((tick_time->tm_hour == 0 && tick_time->tm_min <= 1) || strcmp(s_date_text, "      " ) == 0) {
+     strftime(s_date_text, sizeof(s_date_text), "%a %d", tick_time);
+   }
 }
 
 void main_window_load(Window *window) {
@@ -123,6 +130,21 @@ void main_window_load(Window *window) {
   layer_add_child(stripe_layer, s_time_layer);
   layer_set_update_proc(s_time_layer, update_time);
 
+  int16_t date_height = DATE_LAYER_HEIGHT;
+  GRect date_frame = GRect(
+    window_bounds.origin.x,
+    window_bounds.origin.y + window_bounds.size.h - (DATE_BOTTOM_MARGIN + date_height),
+    window_bounds.size.w,
+    date_height
+  );
+  s_date_text_layer = text_layer_create(date_frame);
+  text_layer_set_text(s_date_text_layer, s_date_text);
+  text_layer_set_text_alignment(s_date_text_layer, GTextAlignmentCenter);
+  text_layer_set_font(s_date_text_layer, fonts_get_system_font(DATE_FONT_KEY));
+  text_layer_set_text_color(s_date_text_layer, GColorBlack);
+  text_layer_set_background_color(s_date_text_layer, GColorClear);
+  layer_add_child(window_layer, text_layer_get_layer(s_date_text_layer));
+
   GRect animation_frame = GRect(
     0,
     0,
@@ -147,4 +169,5 @@ void main_window_unload(Window *window) {
   gbitmap_sequence_destroy(s_animation_sequence);
   gbitmap_destroy(s_animation_bitmap);
   layer_destroy(s_time_layer);
+  text_layer_destroy(s_date_text_layer);
 }
