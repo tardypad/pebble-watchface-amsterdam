@@ -17,14 +17,3 @@
 #define DATE_FONT_KEY FONT_KEY_GOTHIC_18_BOLD
 #define DATE_LAYER_HEIGHT 20
 #define DATE_BOTTOM_MARGIN PBL_IF_ROUND_ELSE(10, 5)
-
-typedef struct {
-  uint32_t resource_id;
-  uint8_t full_frame_index;
-} XXXAnimation;
-
-XXXAnimation xxx_animations[3] = {
-  { RESOURCE_ID_ANIMATION_SLIDE, 4 },
-  { RESOURCE_ID_ANIMATION_SCALE, 5 },
-  { RESOURCE_ID_ANIMATION_ROLL, 4 }
-};
