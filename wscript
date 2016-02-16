@@ -1,7 +1,6 @@
 import os.path
 import waflib.Logs
 from glob import glob
-from sh import Command
 from waflib.Build import POST_LAZY
 
 top = '.'
@@ -11,6 +10,12 @@ def options(ctx):
     ctx.load('pebble_sdk')
 
 def configure(ctx):
+    try:
+      ctx.find_program('svg2pdc', var='SVG2PDC')
+    except ctx.errors.ConfigurationError:
+      waflib.Logs.warn('Missing required program svg2pdc')
+      waflib.Logs.warn("Can't rebuild animations, will use current ones if available")
+
     ctx.load('pebble_sdk')
 
 def build(ctx):
@@ -43,31 +48,13 @@ def build(ctx):
     ctx.pbl_bundle(binaries=binaries, js=ctx.path.ant_glob('src/js/**/*.js'))
 
 def generate_animations(ctx):
-    try:
-      rsvgconvert = Command('rsvg-convert')
-      apngasm = Command('apngasm')
-    except:
-      waflib.Logs.warn('Missing required sh commands: rsvg-convert, apngasm')
-      waflib.Logs.warn("Can't rebuild animations, will use current ones if available")
+    if not ctx.env.SVG2PDC:
       return
 
-    def generate_animation(task):
-        animation_dir = task.env.ANIMATION_DIR
-        platform = task.env.PLATFORM
-        animation_dir_platform = animation_dir + '/' + platform
-        apng_result_file = animation_dir + '/xxx~' + platform + '.apng'
-        for svg_frame in glob(animation_dir_platform + '/*.svg'):
-            rsvgconvert(svg_frame, o=svg_frame.replace('.svg', '.png'))
-        apngasm('--force', o=apng_result_file, f=animation_dir_platform + '/animation.xml')
-        for png_frame in glob(animation_dir_platform + '/*.png'):
-            os.remove(png_frame)
-
     for platform in ctx.env.TARGET_PLATFORMS:
-      for animation_dir in ctx.path.ant_glob('resources/animations/*', dir=True, src=False):
-          animation_dir_platform = animation_dir.srcpath() + '/' + platform
-          animation_sources = ctx.path.ant_glob([animation_dir_platform + '/**/*.svg', animation_dir_platform + '/**/*.xml'])
-          task_env = ctx.env.derive()
-          task_env.ANIMATION_DIR = animation_dir.abspath()
-          task_env.PLATFORM = platform
-          task_name = 'generate ' + os.path.basename(animation_dir.abspath()) + ' animation for ' + platform
-          ctx(rule=generate_animation, source=animation_sources, env=task_env, name=task_name, color='YELLOW')
+        for subdir in ctx.path.ant_glob('resources/animations/*', dir=True, src=False):
+            animation_sources = ctx.path.ant_glob([subdir.srcpath() + '/' + platform + '/**/*.svg'])
+            animation_result = subdir.abspath() + '/xxx~' + platform + '.pdc'
+            task_name = 'generate ' + os.path.basename(subdir.abspath()) + ' animation for ' + platform
+            command = '${SVG2PDC} ' + str(subdir.abspath()) + '/' + str(platform) + ' --sequence -o ' + str(animation_result)  + ' > /dev/null'
+            ctx(rule=command, source=animation_sources, name=task_name, color='YELLOW')
