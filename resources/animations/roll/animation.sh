@@ -2,8 +2,10 @@
 
 PLATFORM="$1"
 ANIMATION_DIR="$(dirname "$(readlink -f "$0")")"
-FRAMES_DIR="$ANIMATION_DIR/$PLATFORM"
-RESULT_FILE="$ANIMATION_DIR/xxx~$PLATFORM"
+FRAMES_DIR="$PLATFORM"
+RESULT_FILE="xxx~$PLATFORM"
+
+cd "$ANIMATION_DIR"
 
 convert -loop 1 -dispose previous -background none \
   -delay 10 "$FRAMES_DIR/01.svg" \
@@ -19,7 +21,8 @@ convert -loop 1 -dispose previous -background none \
   -delay 10 "$FRAMES_DIR/01.svg" \
   "$RESULT_FILE.gif"
 
-gif2apng "$RESULT_FILE.gif" > /dev/null
+gif2apng -z0 "$RESULT_FILE.gif" "$RESULT_FILE.apng" > /dev/null
 
-mv "$RESULT_FILE.png" "$RESULT_FILE.apng"
 rm "$RESULT_FILE.gif"
+
+cd - > /dev/null
