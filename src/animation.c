@@ -9,6 +9,8 @@
 
 #include "config.h"
 
+#define UNUSED(expr) (void)(expr)
+
 typedef struct {
   uint32_t resource_id;
 } XXXAnimation;
@@ -69,6 +71,7 @@ static void animation_sequence_timer_handler(void *context) {
   s_animation_sequence_index++;
 
 #ifdef DEBUG_SLOW_ANIMATIONS
+    UNUSED(frame_duration);
     app_timer_register(DEBUG_SLOW_ANIMATIONS_DELAY, animation_sequence_timer_handler, NULL);
 #else
     app_timer_register(frame_duration, animation_sequence_timer_handler, NULL);
