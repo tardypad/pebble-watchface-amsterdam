@@ -69,13 +69,6 @@ static void animation_sequence_timer_handler(void *context) {
   }
 }
 
-static void select_animation()
-{
-  size_t animations_count = sizeof(s_xxx_animations) / sizeof(s_xxx_animations[0]);
-  int random_index = rand() % animations_count;
-  current_animation = &s_xxx_animations[random_index];
-}
-
 void animation_start_sequence(struct tm* tick_time) {
   char* time_format = clock_is_24h_style() ? "%H:%M" : "%I:%M";
   strftime(s_next_time_text, sizeof(s_next_time_text), time_format, tick_time);
@@ -93,8 +86,12 @@ void animation_start_sequence(struct tm* tick_time) {
     s_animation_bitmap = NULL;
   }
 
-  select_animation();
+  // select animation
+  size_t animations_count = sizeof(s_xxx_animations) / sizeof(s_xxx_animations[0]);
+  int random_index = rand() % animations_count;
+  current_animation = &s_xxx_animations[random_index];
 
+  // initialize animation
   uint32_t animation_id = current_animation->resource_id;
   s_animation_sequence = gbitmap_sequence_create_with_resource(animation_id);
   s_animation_bitmap = gbitmap_create_blank(gbitmap_sequence_get_bitmap_size(s_animation_sequence), GBitmapFormat8Bit);
