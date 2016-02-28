@@ -11,10 +11,9 @@ def options(ctx):
 
 def configure(ctx):
     try:
-      ctx.find_program('convert', var='CONVERT')
-      ctx.find_program('gif2apng', var='GIF2APNG')
+      ctx.find_program('svg2pdc', var='SVG2PDC')
     except ctx.errors.ConfigurationError:
-      waflib.Logs.warn('Missing required programs: convert, gif2apng')
+      waflib.Logs.warn('Missing required program svg2pdc')
       waflib.Logs.warn("Can't rebuild animations, will use current ones if available")
 
     ctx.load('pebble_sdk')
@@ -49,13 +48,13 @@ def build(ctx):
     ctx.pbl_bundle(binaries=binaries, js=ctx.path.ant_glob('src/js/**/*.js'))
 
 def generate_animations(ctx):
-    if not ctx.env.CONVERT or not ctx.env.GIF2APNG:
+    if not ctx.env.SVG2PDC:
       return
 
     for platform in ctx.env.TARGET_PLATFORMS:
-        for animation_dir in ctx.path.ant_glob('resources/animations/*', dir=True, src=False):
-            animation_dir_platform = animation_dir.srcpath() + '/' + platform
-            animation_sources = ctx.path.ant_glob([animation_dir_platform + '/**/*.svg', animation_dir.srcpath() + '/animation.sh'])
-            animation_script = animation_dir.abspath() + '/animation.sh ' + str(platform)
-            task_name = 'generate ' + os.path.basename(animation_dir.abspath()) + ' animation for ' + platform
-            ctx(rule=animation_script, source=animation_sources, name=task_name, color='YELLOW')
+        for subdir in ctx.path.ant_glob('resources/animations/*', dir=True, src=False):
+            animation_sources = ctx.path.ant_glob([subdir.srcpath() + '/' + platform + '/**/*.svg'])
+            animation_result = subdir.abspath() + '/xxx~' + platform + '.pdc'
+            task_name = 'generate ' + os.path.basename(subdir.abspath()) + ' animation for ' + platform
+            command = '${SVG2PDC} ' + str(subdir.abspath()) + '/' + str(platform) + ' --sequence -o ' + str(animation_result)  + ' > /dev/null'
+            ctx(rule=command, source=animation_sources, name=task_name, color='YELLOW')

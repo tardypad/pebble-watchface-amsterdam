@@ -21,17 +21,17 @@
 	"type": "png"
       },
       {
-        "file": "animations/slide/xxx.apng",
+        "file": "animations/slide/xxx.pdc",
         "name": "ANIMATION_SLIDE",
         "type": "raw"
       },
       {
-        "file": "animations/roll/xxx.apng",
+        "file": "animations/roll/xxx.pdc",
         "name": "ANIMATION_ROLL",
         "type": "raw"
       },
       {
-        "file": "animations/scale/xxx.apng",
+        "file": "animations/scale/xxx.pdc",
         "name": "ANIMATION_SCALE",
         "type": "raw"
       }
