@@ -23,16 +23,23 @@
 </cc:Work>
 </rdf:RDF>
 </metadata>
+<rect
+ style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;marker:none;enable-background:accumulate"
+ id="rect6274"
+ width="144"
+ height="56.000008"
+ x="-4.0698242e-07"
+ y="-4.2188475e-15" />
 <path
  style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
- d="M 18.493469,33.500232 22.493236,37.5 27.99347,31.999767 33.493705,37.5 37.493469,33.500232 31.99324,28 37.493469,22.499767 33.493705,18.5 27.99347,24.000232 22.493236,18.5 18.493469,22.499767 23.993701,28 18.493469,33.500232 Z"
+ d="M 12.793469,36.800372 19.193097,43.2 27.993471,34.399628 36.793847,43.2 43.193469,36.800372 34.393103,28 43.193469,19.199628 36.793847,12.8 27.993471,21.600372 19.193097,12.8 12.793469,19.199628 21.593841,28 12.793469,36.800372 Z"
  id="path3344" />
 <path
  style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
- d="M 62.500003,33.500232 66.499767,37.5 72,31.999767 77.50024,37.5 81.500003,33.500232 75.999773,28 81.500003,22.499767 77.50024,18.5 72,24.000232 66.499767,18.5 62.500003,22.499767 68.000232,28 62.500003,33.500232 Z"
+ d="M 56.800003,36.800372 63.199625,43.2 71.999999,34.399628 80.800381,43.2 87.200003,36.800372 78.399635,28 87.200003,19.199628 80.800381,12.8 71.999999,21.600372 63.199625,12.8 56.800003,19.199628 65.600369,28 56.800003,36.800372 Z"
  id="path3342" />
 <path
  style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
- d="M 106.50653,33.500232 110.50629,37.5 116.00653,31.999767 121.50677,37.5 125.50653,33.500232 120.0063,28 125.50653,22.499767 121.50677,18.5 116.00653,24.000232 110.50629,18.5 106.50653,22.499767 112.00677,28 l -5.50024,5.500232 z"
+ d="M 100.80653,36.800372 107.20615,43.2 116.00653,34.399628 124.80691,43.2 131.20653,36.800372 122.40616,28 131.20653,19.199628 124.80691,12.8 116.00653,21.600372 107.20615,12.8 100.80653,19.199628 109.60691,28 l -8.80038,8.800372 z"
  id="path6986" />
 </svg>

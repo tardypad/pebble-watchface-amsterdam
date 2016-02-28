@@ -23,16 +23,23 @@
 </cc:Work>
 </rdf:RDF>
 </metadata>
+<rect
+ y="6.0156249e-06"
+ x="-4.0698242e-07"
+ height="60"
+ width="180"
+ id="rect6274"
+ style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;marker:none;enable-background:accumulate" />
 <path
- id="path3342"
- d="m 29.26003,35.056416 3.677024,3.677024 5.056417,-5.056416 5.056418,5.056416 3.67702,-3.677024 L 41.670497,30 46.726909,24.943584 43.049889,21.26656 37.993471,26.322976 32.937054,21.26656 29.26003,24.943584 34.316446,30 29.26003,35.056416 Z"
+ id="path4142"
+ d="M 20.526591,40.112832 27.880639,47.46688 37.993472,37.354048 48.106308,47.46688 55.460348,40.112832 45.347524,30 55.460348,19.887168 48.106308,12.53312 37.993472,22.645952 27.880639,12.53312 20.526591,19.887168 30.639423,30 20.526591,40.112832 Z"
  style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
 <path
- id="path3340"
- d="m 81.266566,35.056416 3.67702,3.677024 5.056416,-5.056416 5.05642,5.056416 3.67702,-3.677024 L 93.67703,30 98.733442,24.943584 95.056422,21.26656 90.000002,26.322976 84.943586,21.26656 81.266566,24.943584 86.322978,30 81.266566,35.056416 Z"
+ id="path4140"
+ d="M 72.533127,40.112832 79.887167,47.46688 89.999999,37.354048 100.11284,47.46688 107.46688,40.112832 97.354055,30 107.46688,19.887168 100.11284,12.53312 89.999999,22.645952 79.887167,12.53312 72.533127,19.887168 82.645951,30 72.533127,40.112832 Z"
  style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
 <path
  id="path6986"
- d="m 133.27309,35.056416 3.67702,3.677024 5.05642,-5.056416 5.05642,5.056416 3.67702,-3.677024 L 145.68356,30 l 5.05641,-5.056416 -3.67702,-3.677024 -5.05642,5.056416 -5.05642,-5.056416 -3.67702,3.677024 5.05642,5.056416 -5.05642,5.056416 z"
+ d="m 124.53965,40.112832 7.35405,7.354048 10.11283,-10.112832 10.11284,10.112832 7.35404,-7.354048 L 149.36059,30 159.47341,19.887168 152.11937,12.53312 142.00653,22.645952 131.8937,12.53312 124.53965,19.887168 134.65248,30 124.53965,40.112832 Z"
  style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate" />
 </svg>
