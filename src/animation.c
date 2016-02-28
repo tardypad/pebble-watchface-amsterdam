@@ -21,6 +21,7 @@ static XXXAnimation s_xxx_animations[3] = {
 
 static Layer *s_animation_layer;
 static GDrawCommandSequence *s_animation_sequence = NULL;
+static GDrawCommandFrame *s_animation_sequence_frame = NULL;
 static bool s_animation_running = false;
 static uint32_t s_animation_sequence_num_frames = 0;
 static uint32_t s_animation_sequence_index = 0;
@@ -42,9 +43,7 @@ char* animation_date_text()
 }
 
 static void update_animation(Layer *layer, GContext *ctx) {
-  GDrawCommandFrame *animation_sequence_frame = gdraw_command_sequence_get_frame_by_index(s_animation_sequence, s_animation_sequence_index);
-  gdraw_command_frame_draw(ctx, s_animation_sequence, animation_sequence_frame, GPoint(0, 0));
-  s_animation_sequence_index++;
+  gdraw_command_frame_draw(ctx, s_animation_sequence, s_animation_sequence_frame, GPoint(0, 0));
 }
 
 static void animation_sequence_timer_handler(void *context) {
@@ -52,19 +51,22 @@ static void animation_sequence_timer_handler(void *context) {
 
   if (s_animation_sequence_index >= s_animation_sequence_num_frames) {
     s_animation_running = false;
+    s_animation_sequence_frame = NULL;
     return;
   }
 
   s_animation_running = true;
 
-  GDrawCommandFrame *animation_sequence_frame = gdraw_command_sequence_get_frame_by_index(s_animation_sequence, s_animation_sequence_index);
-  uint32_t frame_duration = gdraw_command_frame_get_duration(animation_sequence_frame);
+  s_animation_sequence_frame = gdraw_command_sequence_get_frame_by_index(s_animation_sequence, s_animation_sequence_index);
+  uint32_t frame_duration = gdraw_command_frame_get_duration(s_animation_sequence_frame);
 
   if (s_animation_sequence_index == s_animation_sequence_num_frames / 2) {
     strncpy(s_time_text, s_next_time_text, sizeof(s_next_time_text));
     strncpy(s_date_text, s_next_date_text, sizeof(s_next_date_text));
     frame_duration = 1000;
   }
+
+  s_animation_sequence_index++;
 
 #ifdef DEBUG_SLOW_ANIMATIONS
     app_timer_register(DEBUG_SLOW_ANIMATIONS_DELAY, animation_sequence_timer_handler, NULL);
@@ -98,6 +100,7 @@ void animation_start_sequence(struct tm* tick_time) {
   uint32_t animation_id = current_animation->resource_id;
   s_animation_sequence = gdraw_command_sequence_create_with_resource(animation_id);
   s_animation_sequence_num_frames = gdraw_command_sequence_get_num_frames(s_animation_sequence);
+  s_animation_sequence_frame = NULL;
   s_animation_sequence_index = 0;
 
   app_timer_register(1, animation_sequence_timer_handler, NULL);
