@@ -70,7 +70,7 @@ static void animation_sequence_timer_handler(void *context) {
 
   s_animation_sequence_index++;
 
-#ifdef DEBUG_SLOW_ANIMATIONS
+#ifdef DEBUG_SLOW_ANIMATIONS_DELAY
     UNUSED(frame_duration);
     app_timer_register(DEBUG_SLOW_ANIMATIONS_DELAY, animation_sequence_timer_handler, NULL);
 #else
