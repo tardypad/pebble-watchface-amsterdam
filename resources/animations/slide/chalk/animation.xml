@@ -3,7 +3,7 @@
   <frame src="01.svg" />
   <frame src="02.svg" />
   <frame src="03.svg" />
-  <frame src="04.svg" />
+  <frame src="04.svg" duration="1000" />
   <frame src="03.svg" />
   <frame src="02.svg" />
   <frame src="01.svg" />

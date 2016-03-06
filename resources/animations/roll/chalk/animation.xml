@@ -4,7 +4,7 @@
   <frame src="02.svg" />
   <frame src="03.svg" />
   <frame src="04.svg" />
-  <frame src="05.svg" />
+  <frame src="05.svg" duration="1000" />
   <frame src="04.svg" />
   <frame src="03.svg" />
   <frame src="02.svg" />

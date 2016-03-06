@@ -65,7 +65,6 @@ static void animation_sequence_timer_handler(void *context) {
   if (s_animation_sequence_index == s_animation_sequence_num_frames / 2) {
     strncpy(s_time_text, s_next_time_text, sizeof(s_next_time_text));
     strncpy(s_date_text, s_next_date_text, sizeof(s_next_date_text));
-    frame_duration = 1000;
   }
 
   s_animation_sequence_index++;
