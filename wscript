@@ -53,8 +53,10 @@ def generate_animations(ctx):
 
     for platform in ctx.env.TARGET_PLATFORMS:
         for subdir in ctx.path.ant_glob('resources/animations/*', dir=True, src=False):
-            animation_sources = ctx.path.ant_glob([subdir.srcpath() + '/' + platform + '/**/*.svg'])
+            animation_src_dir_platform = subdir.srcpath() + '/' + platform
+            animation_sources = ctx.path.ant_glob([animation_src_dir_platform + '/**/*.svg', animation_src_dir_platform + '/animation.xml'])
             animation_result = subdir.abspath() + '/xxx~' + platform + '.pdc'
             task_name = 'generate ' + os.path.basename(subdir.abspath()) + ' animation for ' + platform
-            command = '${SVG2PDC} ' + str(subdir.abspath()) + '/' + str(platform) + ' --sequence -o ' + str(animation_result)  + ' > /dev/null'
+            command = '${SVG2PDC} ' + str(subdir.abspath()) + '/' + str(platform) + '/animation.xml'
+            command += ' --sequence -o ' + str(animation_result)  + ' > /dev/null'
             ctx(rule=command, source=animation_sources, name=task_name, color='YELLOW')
