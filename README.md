@@ -18,8 +18,8 @@ Features
 Build
 -----
 
-To generate the animations, 1 extra tool, outside Pebble's SDK, is needed.
-[svg2pdc](https://github.com/tardypad/pebble-svg2pdc/blob/master/tools/svg2pdc.py)
+To generate the animations, 1 extra tool, outside Pebble's SDK, is needed:
+- [svg2pdc](https://github.com/tardypad/pebble-svg2pdc/blob/master/tools/svg2pdc.py)
 
 Licenses
 --------
