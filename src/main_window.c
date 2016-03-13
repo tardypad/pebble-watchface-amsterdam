@@ -21,6 +21,8 @@ static void update_time(Layer *layer, GContext *ctx) {
   if (strcmp(time_text, "     ") == 0)
     return;
 
+  LOG_DEBUG("Time update");
+
   GRect bounds = layer_get_bounds(layer);
   bounds.origin.y = -TIME_FONT_PADDING;
   GFont font = fonts_get_system_font(TIME_FONT_KEY);
@@ -29,10 +31,13 @@ static void update_time(Layer *layer, GContext *ctx) {
 }
 
 static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
+  LOG_DEBUG("Tick");
   animation_start_sequence(tick_time);
 }
 
 static void handle_reload_settings() {
+  LOG_DEBUG("Reload settings");
+
   Layer* date_layer = text_layer_get_layer(s_date_text_layer);
   bool display_date = settings_display_date();
   layer_set_hidden(date_layer, !display_date);

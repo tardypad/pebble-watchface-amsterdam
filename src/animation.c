@@ -45,6 +45,7 @@ char* animation_date_text()
 }
 
 static void update_animation(Layer *layer, GContext *ctx) {
+  LOG_DEBUG("Animation update");
   gdraw_command_frame_draw(ctx, s_animation_sequence, s_animation_sequence_frame, GPoint(0, 0));
 }
 
@@ -52,6 +53,7 @@ static void animation_sequence_timer_handler(void *context) {
   layer_mark_dirty(s_animation_layer);
 
   if (s_animation_sequence_index >= s_animation_sequence_num_frames) {
+    LOG_DEBUG("Animation end");
     s_animation_running = false;
     s_animation_sequence_frame = NULL;
     return;
@@ -61,6 +63,12 @@ static void animation_sequence_timer_handler(void *context) {
 
   s_animation_sequence_frame = gdraw_command_sequence_get_frame_by_index(s_animation_sequence, s_animation_sequence_index);
   uint32_t frame_duration = gdraw_command_frame_get_duration(s_animation_sequence_frame);
+
+  LOG_DEBUG("Animation frame %d/%d (%d ms)",
+            (int) s_animation_sequence_index + 1,
+            (int) s_animation_sequence_num_frames,
+            (int) frame_duration
+           );
 
   if (s_animation_sequence_index == s_animation_sequence_num_frames / 2) {
     strncpy(s_time_text, s_next_time_text, sizeof(s_next_time_text));
@@ -78,6 +86,8 @@ static void animation_sequence_timer_handler(void *context) {
 }
 
 void animation_start_sequence(struct tm* tick_time) {
+  LOG_DEBUG("Animation start");
+
   char* time_format = clock_is_24h_style() ? "%H:%M" : "%I:%M";
   strftime(s_next_time_text, sizeof(s_next_time_text), time_format, tick_time);
   strftime(s_next_date_text, sizeof(s_next_date_text), "%a %d", tick_time);

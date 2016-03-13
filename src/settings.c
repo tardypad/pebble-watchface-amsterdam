@@ -7,6 +7,7 @@
 
 #include <pebble.h>
 
+#include "config.h"
 #include "settings.h"
 
 typedef enum {
@@ -21,10 +22,13 @@ bool settings_display_date() {
 }
 
 static void inbox_received_handler(DictionaryIterator *iter, void *context) {
+  LOG_DEBUG("Settings received");
+
   Tuple *display_date_t = dict_find(iter, AppKeyDisplayDate);
   if (display_date_t) {
     s_display_date = display_date_t->value->int32 == 1;
     persist_write_bool(AppKeyDisplayDate, s_display_date);
+    LOG_DEBUG("Settings save display date: %s", s_display_date ? "true" : "false");
   }
 
   s_settings_reload_handler();
@@ -33,6 +37,7 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 static void load_settings() {
   if(persist_exists(AppKeyDisplayDate)) {
     s_display_date = persist_read_bool(AppKeyDisplayDate);
+    LOG_DEBUG("Settings load display date: %s", s_display_date ? "true" : "false");
   }
 
   s_settings_reload_handler();
