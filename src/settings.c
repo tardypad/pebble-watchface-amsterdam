@@ -24,6 +24,15 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
   Tuple *display_date_t = dict_find(iter, AppKeyDisplayDate);
   if (display_date_t) {
     s_display_date = display_date_t->value->int32 == 1;
+    persist_write_bool(AppKeyDisplayDate, s_display_date);
+  }
+
+  s_settings_reload_handler();
+}
+
+static void load_settings() {
+  if(persist_exists(AppKeyDisplayDate)) {
+    s_display_date = persist_read_bool(AppKeyDisplayDate);
   }
 
   s_settings_reload_handler();
@@ -33,6 +42,8 @@ void settings_init(settingsReloadHandler settings_reload_handler) {
   s_settings_reload_handler = settings_reload_handler;
   app_message_register_inbox_received(inbox_received_handler);
   app_message_open(20, 0);
+
+  load_settings();
 }
 
 void settings_deinit() {
