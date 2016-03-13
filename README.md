@@ -21,6 +21,12 @@ Build
 To generate the animations, 1 extra tool, outside Pebble's SDK, is needed:
 - [svg2pdc](https://github.com/tardypad/pebble-svg2pdc/blob/master/tools/svg2pdc.py)
 
+Special options:
+- _--debug-logs_: Build with debugging logs
+- _--debug-slow_: Build with slow animations
+
+Example usage: _pebble build -- --debug-logs --debug-slow_
+
 Licenses
 --------
 
