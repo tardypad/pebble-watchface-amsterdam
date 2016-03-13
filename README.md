@@ -13,6 +13,7 @@ Features
 
 - display random XXX animations every minute
 - display date
+- local settings for display
 
 Build
 -----
