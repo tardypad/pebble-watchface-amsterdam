@@ -12,6 +12,11 @@
 #define LOG_WARN(...) app_log(APP_LOG_LEVEL_WARNING, __FILE__, __LINE__, __VA_ARGS__)
 #define LOG_ERROR(...) app_log(APP_LOG_LEVEL_ERROR, __FILE__, __LINE__, __VA_ARGS__)
 
+#ifndef DEBUG_LOGS
+  #undef LOG_DEBUG
+  #define LOG_DEBUG(...)
+#endif
+
 //#define DEBUG_SLOW_ANIMATIONS_DELAY 1000
 
 #define TIME_FONT_KEY FONT_KEY_BITHAM_42_MEDIUM_NUMBERS

@@ -8,6 +8,7 @@ out = 'build'
 
 def options(ctx):
     ctx.load('pebble_sdk')
+    ctx.add_option('--debug-logs', dest='debug_logs', action='store_true', default=False, help='Build with debugging logs')
 
 def configure(ctx):
     try:
@@ -30,6 +31,9 @@ def build(ctx):
     binaries = []
 
     for p in ctx.env.TARGET_PLATFORMS:
+        if ctx.options.debug_logs:
+            ctx.env.append_value('DEFINES', 'DEBUG_LOGS')
+
         ctx.set_env(ctx.all_envs[p])
         ctx.set_group(ctx.env.PLATFORM_NAME)
         app_elf='{}/pebble-app.elf'.format(ctx.env.BUILD_DIR)
