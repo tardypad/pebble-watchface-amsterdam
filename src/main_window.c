@@ -9,6 +9,7 @@
 
 #include "animation.h"
 #include "config.h"
+#include "settings.h"
 
 static BitmapLayer *s_stripe_bitmap_layer;
 static Layer *s_time_layer;
@@ -29,6 +30,12 @@ static void update_time(Layer *layer, GContext *ctx) {
 
 static void handle_tick(struct tm* tick_time, TimeUnits units_changed) {
   animation_start_sequence(tick_time);
+}
+
+static void handle_reload_settings() {
+  Layer* date_layer = text_layer_get_layer(s_date_text_layer);
+  bool display_date = settings_display_date();
+  layer_set_hidden(date_layer, !display_date);
 }
 
 void main_window_load(Window *window) {
@@ -76,6 +83,7 @@ void main_window_load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(s_date_text_layer));
 
   animation_load(stripe_layer);
+  settings_init(handle_reload_settings);
 
   time_t now = time(NULL);
   struct tm *current_time = localtime(&now);
@@ -90,4 +98,5 @@ void main_window_unload(Window *window) {
   text_layer_destroy(s_date_text_layer);
 
   animation_unload(bitmap_layer_get_layer(s_stripe_bitmap_layer));
+  settings_deinit();
 }

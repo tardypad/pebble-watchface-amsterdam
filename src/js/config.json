@@ -1,0 +1,25 @@
+[
+  {
+    "type": "heading",
+    "defaultValue": "Amsterdam settings"
+  },
+  {
+    "type": "section",
+    "items": [
+      {
+        "type": "heading",
+        "defaultValue": "Display"
+      },
+      {
+        "type": "toggle",
+        "appKey": "date_display",
+        "label": "Date",
+        "defaultValue": true
+      }
+    ]
+  },
+  {
+    "type": "submit",
+    "defaultValue": "Save"
+  }
+]

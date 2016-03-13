@@ -36,5 +36,12 @@
         "type": "raw"
       }
     ]
+  },
+  "enableMultiJS": true,
+  "capabilities": [
+    "configurable"
+  ],
+  "appKeys": {
+    "date_display": 0
   }
 }

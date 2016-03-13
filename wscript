@@ -45,7 +45,7 @@ def build(ctx):
             binaries.append({'platform': p, 'app_elf': app_elf})
 
     ctx.set_group('bundle')
-    ctx.pbl_bundle(binaries=binaries, js=ctx.path.ant_glob('src/js/**/*.js'))
+    ctx.pbl_bundle(binaries=binaries, js=ctx.path.ant_glob(['src/js/**/*.js', 'src/js/**/*.json']))
 
 def generate_animations(ctx):
     if not ctx.env.SVG2PDC:
