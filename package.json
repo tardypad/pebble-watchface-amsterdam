@@ -50,8 +50,8 @@
     "capabilities": [
       "configurable"
     ],
-    "messageKeys": {
-      "date_display": 0
-    }
+    "messageKeys": [
+      "date_display"
+    ]
   }
 }
