@@ -3,7 +3,9 @@
   "version": "1.1.0",
   "author": "Damien Tardy-Panis",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "pebble-clay": "^1.0.2"
+  },
   "keywords": [
     "pebble-app"
   ],
