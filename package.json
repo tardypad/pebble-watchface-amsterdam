@@ -1,0 +1,55 @@
+{
+  "name": "Amsterdam",
+  "version": "1.1.0",
+  "author": "Damien Tardy-Panis",
+  "private": true,
+  "dependencies": {},
+  "keywords": [
+    "pebble-app"
+  ],
+  "pebble": {
+    "uuid": "841a6832-cf6f-40f8-8c50-0b42a671e277",
+    "displayName": "Amsterdam",
+    "sdkVersion": "3",
+    "targetPlatforms": [
+      "basalt",
+      "chalk"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "resources": {
+      "media": [
+        {
+          "menuIcon": true,
+          "type": "png",
+          "name": "IMAGE_MENU_ICON",
+          "file": "images/menu_icon.png"
+        },
+        {
+          "type": "raw",
+          "name": "ANIMATION_SLIDE",
+          "file": "animations/slide/xxx.pdc"
+        },
+        {
+          "type": "raw",
+          "name": "ANIMATION_ROLL",
+          "file": "animations/roll/xxx.pdc"
+        },
+        {
+          "type": "raw",
+          "name": "ANIMATION_SCALE",
+          "file": "animations/scale/xxx.pdc"
+        }
+      ]
+    },
+    "projectType": "native",
+    "enableMultiJS": true,
+    "capabilities": [
+      "configurable"
+    ],
+    "messageKeys": {
+      "date_display": 0
+    }
+  }
+}
