@@ -10,10 +10,6 @@
 #include "config.h"
 #include "settings.h"
 
-typedef enum {
-  AppKeyDisplayDate = 0,
-} AppKey;
-
 static settingsReloadHandler s_settings_reload_handler;
 static bool s_display_date = true;
 
@@ -24,10 +20,10 @@ bool settings_display_date() {
 static void inbox_received_handler(DictionaryIterator *iter, void *context) {
   LOG_DEBUG("Settings received");
 
-  Tuple *display_date_t = dict_find(iter, AppKeyDisplayDate);
+  Tuple *display_date_t = dict_find(iter, MESSAGE_KEY_date_display);
   if (display_date_t) {
     s_display_date = display_date_t->value->int32 == 1;
-    persist_write_bool(AppKeyDisplayDate, s_display_date);
+    persist_write_bool(MESSAGE_KEY_date_display, s_display_date);
     LOG_DEBUG("Settings save display date: %s", s_display_date ? "true" : "false");
   }
 
@@ -35,8 +31,8 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 }
 
 static void load_settings() {
-  if(persist_exists(AppKeyDisplayDate)) {
-    s_display_date = persist_read_bool(AppKeyDisplayDate);
+  if(persist_exists(MESSAGE_KEY_date_display)) {
+    s_display_date = persist_read_bool(MESSAGE_KEY_date_display);
     LOG_DEBUG("Settings load display date: %s", s_display_date ? "true" : "false");
   }
 
