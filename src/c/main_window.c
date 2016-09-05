@@ -13,7 +13,6 @@
 
 static Layer *s_window_layer;
 static BitmapLayer *s_stripe_bitmap_layer;
-static Layer *s_time_layer;
 static TextLayer *s_date_text_layer;
 
 static void update_time(Layer *layer, GContext *ctx) {
@@ -104,9 +103,9 @@ void main_window_load(Window *window) {
     stripe_frame.size.w,
     time_height
   );
-  s_time_layer = layer_create(time_frame);
-  layer_add_child(stripe_layer, s_time_layer);
-  layer_set_update_proc(s_time_layer, update_time);
+  Layer* time_layer = layer_create(time_frame);
+  layer_add_child(stripe_layer, time_layer);
+  layer_set_update_proc(time_layer, update_time);
 
   GRect date_frame = define_date_frame();
   s_date_text_layer = text_layer_create(date_frame);
@@ -134,7 +133,6 @@ void main_window_load(Window *window) {
 void main_window_unload(Window *window) {
   tick_timer_service_unsubscribe();
   bitmap_layer_destroy(s_stripe_bitmap_layer);
-  layer_destroy(s_time_layer);
   text_layer_destroy(s_date_text_layer);
 
   animation_unload(bitmap_layer_get_layer(s_stripe_bitmap_layer));
