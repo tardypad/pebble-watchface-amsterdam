@@ -3,7 +3,11 @@ Amsterdam Pebble Watchface
 
 [Pebble](https://www.pebble.com/) watchface displaying the Amsterdam flag
 
-Designed for Chalk and Basalt platforms
+Designed for platforms:
+- Basalt (Time, Time Steel)
+- Chalk (Time Round)
+
+Built with SDK 4
 
 ![Chalk roll animation](/assets/chalk/animation_roll.gif?raw=true "Roll animation")
 ![Basalt slide animation](/assets/basalt/animation_slide.gif?raw=true "Slide animation")
@@ -14,6 +18,7 @@ Features
 - display random XXX animations every minute
 - display date
 - local settings for display
+- handle Timeline Quick View
 
 Build
 -----
