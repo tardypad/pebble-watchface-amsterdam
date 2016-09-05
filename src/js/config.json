@@ -12,7 +12,7 @@
       },
       {
         "type": "toggle",
-        "appKey": "date_display",
+        "messageKey": "date_display",
         "label": "Date",
         "defaultValue": true
       }
