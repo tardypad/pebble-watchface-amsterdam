@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="60">
-  <rect width="60" height="60" fill="#000"/>
-  <g fill="#fff">
+  <rect width="60" height="60" fill="#000000"/>
+  <g fill="#ffffff">
     <polygon points="9.365 8.166 .174 17.359 12.814 30 .174 42.641 9.365 51.834 22.006 39.193 34.648 51.834 43.84 42.641 31.199 30 43.84 17.359 34.648 8.166 22.006 20.807 9.365 8.166"/>
   </g>
 </svg>
