@@ -1,37 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
- xmlns:dc="http://purl.org/dc/elements/1.1/"
- xmlns:cc="http://creativecommons.org/ns#"
- xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
- xmlns:svg="http://www.w3.org/2000/svg"
- xmlns="http://www.w3.org/2000/svg"
- version="1.1"
- id="svg2"
- height="56"
- width="144">
-<defs
- id="defs4" />
-<metadata
- id="metadata7">
-<rdf:RDF>
-<cc:Work
- rdf:about="">
-<dc:format>image/svg+xml</dc:format>
-<dc:type
- rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-<dc:title></dc:title>
-</cc:Work>
-</rdf:RDF>
-</metadata>
-<g
- id="g3372">
-<path
- style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;marker:none;enable-background:accumulate"
- d="M 0 0 L 0 56 L 44 56 L 44 0 L 0 0 z "
- id="rect6274" />
-<path
- style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;marker:none;enable-background:accumulate"
- d="M 5.0058594 9 L 0 14.005859 L 0 19.994141 L 8.0078125 28 L 0 36.005859 L 0 41.994141 L 5.0058594 47 L 16.005859 36 L 27.007812 47 L 35.005859 39 L 24.005859 28 L 35.005859 17 L 27.007812 9 L 16.005859 20 L 5.0058594 9 z "
- id="rect3337" />
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="144" height="56">
+  <rect width="44" height="56" fill="#000"/>
+  <g fill="#fff">
+    <polygon points="5.006 9 0 14.006 0 19.994 8.008 28 0 36.006 0 41.994 5.006 47 16.006 36 27.008 47 35.006 39 24.006 28 35.006 17 27.008 9 16.006 20 5.006 9"/>
+  </g>
 </svg>

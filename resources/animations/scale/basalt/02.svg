@@ -1,38 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
- xmlns:dc="http://purl.org/dc/elements/1.1/"
- xmlns:cc="http://creativecommons.org/ns#"
- xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
- xmlns:svg="http://www.w3.org/2000/svg"
- xmlns="http://www.w3.org/2000/svg"
- version="1.1"
- id="svg2"
- height="56"
- width="144">
-<defs
- id="defs4" />
-<metadata
- id="metadata7">
-<rdf:RDF>
-<cc:Work
- rdf:about="">
-<dc:format>image/svg+xml</dc:format>
-<dc:type
- rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-<dc:title></dc:title>
-</cc:Work>
-</rdf:RDF>
-</metadata>
-<path
- style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
- d="M 18.493469,33.500232 22.493236,37.5 27.99347,31.999767 33.493705,37.5 37.493469,33.500232 31.99324,28 37.493469,22.499767 33.493705,18.5 27.99347,24.000232 22.493236,18.5 18.493469,22.499767 23.993701,28 18.493469,33.500232 Z"
- id="path3344" />
-<path
- style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
- d="M 62.500003,33.500232 66.499767,37.5 72,31.999767 77.50024,37.5 81.500003,33.500232 75.999773,28 81.500003,22.499767 77.50024,18.5 72,24.000232 66.499767,18.5 62.500003,22.499767 68.000232,28 62.500003,33.500232 Z"
- id="path3342" />
-<path
- style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
- d="M 106.50653,33.500232 110.50629,37.5 116.00653,31.999767 121.50677,37.5 125.50653,33.500232 120.0063,28 125.50653,22.499767 121.50677,18.5 116.00653,24.000232 110.50629,18.5 106.50653,22.499767 112.00677,28 l -5.50024,5.500232 z"
- id="path6986" />
+<svg xmlns="http://www.w3.org/2000/svg" width="144" height="56">
+  <g fill="#fff">
+    <polygon points="18.493 33.5 22.493 37.5 27.993 32 33.494 37.5 37.493 33.5 31.993 28 37.493 22.5 33.494 18.5 27.993 24 22.493 18.5 18.493 22.5 23.994 28 18.493 33.5"/>
+    <polygon points="62.5 33.5 66.5 37.5 72 32 77.5 37.5 81.5 33.5 76 28 81.5 22.5 77.5 18.5 72 24 66.5 18.5 62.5 22.5 68 28 62.5 33.5"/>
+    <polygon points="106.507 33.5 110.506 37.5 116.007 32 121.507 37.5 125.507 33.5 120.006 28 125.507 22.5 121.507 18.5 116.007 24 110.506 18.5 106.507 22.5 112.007 28 106.507 33.5"/>
+  </g>
 </svg>
